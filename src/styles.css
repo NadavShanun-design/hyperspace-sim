@@ -112,7 +112,8 @@ form {
 }
 
 .field[hidden],
-.heatmap[hidden] {
+.heatmap[hidden],
+.note[hidden] {
   display: none;
 }
 

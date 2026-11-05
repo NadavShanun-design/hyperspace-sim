@@ -615,6 +615,7 @@ export function mount(doc, win) {
   const legsList = byId(doc, 'legs');
   const heat = byId(doc, 'heatmap');
   const heatFigure = byId(doc, 'heatmap-figure');
+  const warpNote = byId(doc, 'warp-note');
   const heatCaption = byId(doc, 'heatmap-caption');
   const heatCtx = heat.getContext('2d');
 
@@ -684,6 +685,7 @@ export function mount(doc, win) {
     rocketGroup.hidden = isWarp;
     warpGroup.hidden = !isWarp;
     heatFigure.hidden = !isWarp;
+    warpNote.hidden = !isWarp;
     drawHeatmap();
   }
 
