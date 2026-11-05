@@ -5,6 +5,9 @@
   "type": "module",
   "license": "MIT",
   "engines": { "node": ">=20" },
+  "bin": {
+    "hyperspace": "bin/hyperspace.js"
+  },
   "scripts": {
     "test": "node --test"
   }
