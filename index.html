@@ -1,0 +1,94 @@
+<!doctype html>
+<!-- Hyperspace-jump simulator: static page, relative URLs only (works from a GitHub Pages subpath). -->
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="dark">
+  <meta name="description" content="Browser hyperspace-jump simulator with real relativity and Alcubierre warp physics over the nearest stars.">
+  <title>Hyperspace Sim</title>
+  <link rel="icon" href="data:,">
+  <link rel="stylesheet" href="./src/styles.css">
+</head>
+<body>
+  <canvas id="sky" class="sky" aria-hidden="true"></canvas>
+
+  <main class="layout">
+    <section class="panel cockpit" aria-labelledby="cockpit-title">
+      <h1 id="cockpit-title">Hyperspace Sim</h1>
+      <p class="tagline">Real relativity and warp-metric physics over the nearest stars.</p>
+
+      <form id="cockpit-form" novalidate>
+        <div class="row two">
+          <div class="field">
+            <label for="from">Origin</label>
+            <select id="from" name="from"></select>
+          </div>
+          <div class="field">
+            <label for="to">Destination</label>
+            <select id="to" name="to"></select>
+          </div>
+        </div>
+
+        <div class="field">
+          <label for="max-jump">Longest single jump</label>
+          <div class="slider">
+            <input id="max-jump" name="maxJump" type="range" min="1" max="30" step="0.5" aria-describedby="max-jump-out">
+            <output id="max-jump-out" for="max-jump"></output>
+          </div>
+        </div>
+
+        <fieldset class="modes">
+          <legend>Drive</legend>
+          <label class="mode">
+            <input type="radio" name="mode" value="rocket" checked>
+            <span>Flip-and-burn rocket</span>
+          </label>
+          <label class="mode">
+            <input type="radio" name="mode" value="warp">
+            <span>Alcubierre warp</span>
+          </label>
+        </fieldset>
+
+        <div id="rocket-controls" class="field">
+          <label for="accel">Proper acceleration</label>
+          <div class="slider">
+            <input id="accel" name="accel" type="range" min="0.1" max="10" step="0.1" aria-describedby="accel-out">
+            <output id="accel-out" for="accel"></output>
+          </div>
+        </div>
+
+        <div id="warp-controls" class="field" hidden>
+          <label for="warp">Bubble speed</label>
+          <div class="slider">
+            <input id="warp" name="warp" type="range" min="0.5" max="100" step="0.5" aria-describedby="warp-out">
+            <output id="warp-out" for="warp"></output>
+          </div>
+        </div>
+
+        <button id="engage" type="submit" class="engage">Engage</button>
+      </form>
+
+      <figure id="heatmap-figure" class="heatmap" hidden>
+        <canvas id="heatmap" width="180" height="180" role="img"
+          aria-label="Heatmap of the negative energy density around the warp bubble"></canvas>
+        <figcaption id="heatmap-caption"></figcaption>
+      </figure>
+    </section>
+
+    <section class="panel hud" aria-labelledby="hud-title">
+      <h2 id="hud-title">Flight computer</h2>
+      <p id="status" class="status" role="status">Pick a destination and press Engage.</p>
+      <dl id="live" class="readout live"></dl>
+      <dl id="stats" class="readout"></dl>
+      <ol id="legs" class="legs"></ol>
+      <p class="note">Warp mode is speculative physics: the Alcubierre metric needs negative energy (exotic matter).</p>
+    </section>
+  </main>
+
+  <script type="module">
+    import { mount } from './src/app.js';
+    mount(document, window);
+  </script>
+</body>
+</html>
