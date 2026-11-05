@@ -4,6 +4,8 @@ name: Pages
 on:
   push:
     branches: [main]
+    # Catalog-only changes do not change the app, so they skip the redeploy.
+    paths-ignore: ['data/hyg-nearby.csv']
   workflow_dispatch:
 permissions:
   contents: read
