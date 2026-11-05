@@ -1,0 +1,11 @@
+{
+  "name": "hyperspace-sim",
+  "version": "0.1.0",
+  "description": "Browser hyperspace-jump simulator with real relativity and warp-drive physics over the nearest stars.",
+  "type": "module",
+  "license": "MIT",
+  "engines": { "node": ">=20" },
+  "scripts": {
+    "test": "node --test"
+  }
+}
