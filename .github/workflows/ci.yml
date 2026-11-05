@@ -2,7 +2,9 @@ name: CI
 on:
   push:
     branches: [main]
+    paths-ignore: ['data/hyg-nearby.csv']
   pull_request:
+    paths-ignore: ['data/hyg-nearby.csv']
 jobs:
   test:
     runs-on: ubuntu-latest
