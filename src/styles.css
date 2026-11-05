@@ -1,0 +1,290 @@
+/* Hyperspace Sim: dark cockpit over a full-window starfield. System fonts only. */
+
+:root {
+  --bg: #000;
+  --panel: rgba(8, 12, 28, 0.78);
+  --border: rgba(140, 170, 255, 0.28);
+  --text: #e6ecff;
+  --muted: #a3b1d6;
+  --accent: #8fb6ff;
+  --accent-strong: #c9dcff;
+  --focus: #ffd479;
+  --radius: 12px;
+  font-family: system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+  color: var(--text);
+  background: var(--bg);
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  height: 100%;
+  overflow: hidden;
+}
+
+.sky {
+  position: fixed;
+  inset: 0;
+  width: 100vw;
+  height: 100vh;
+  display: block;
+}
+
+.layout {
+  position: relative;
+  height: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 16px;
+  padding: 16px;
+  pointer-events: none;
+}
+
+.panel {
+  pointer-events: auto;
+  background: var(--panel);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 16px 18px;
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  max-height: calc(100vh - 32px);
+  overflow-y: auto;
+}
+
+.cockpit {
+  width: min(360px, 100%);
+}
+
+.hud {
+  width: min(380px, 100%);
+}
+
+h1,
+h2 {
+  margin: 0 0 4px;
+  letter-spacing: 0.04em;
+  font-weight: 650;
+}
+
+h1 {
+  font-size: 1.25rem;
+}
+
+h2 {
+  font-size: 1rem;
+  color: var(--accent-strong);
+}
+
+.tagline,
+.note,
+figcaption {
+  color: var(--muted);
+  font-size: 0.8rem;
+  line-height: 1.4;
+}
+
+.tagline {
+  margin: 0 0 14px;
+}
+
+form {
+  display: grid;
+  gap: 12px;
+}
+
+.row.two {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+}
+
+.field {
+  display: grid;
+  gap: 6px;
+}
+
+.field[hidden],
+.heatmap[hidden] {
+  display: none;
+}
+
+label,
+legend {
+  font-size: 0.8rem;
+  color: var(--muted);
+  letter-spacing: 0.03em;
+}
+
+select {
+  width: 100%;
+  font: inherit;
+  font-size: 0.9rem;
+  color: var(--text);
+  background: rgba(20, 28, 56, 0.95);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 7px 8px;
+}
+
+.slider {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+input[type='range'] {
+  flex: 1;
+  accent-color: var(--accent);
+}
+
+output {
+  min-width: 4.5em;
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+  font-size: 0.9rem;
+}
+
+.modes {
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 8px 10px 10px;
+  margin: 0;
+  display: grid;
+  gap: 6px;
+}
+
+.mode {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: var(--text);
+  font-size: 0.9rem;
+  cursor: pointer;
+}
+
+.mode input {
+  accent-color: var(--accent);
+}
+
+.engage {
+  font: inherit;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: #050914;
+  background: linear-gradient(180deg, #cfe0ff, #8fb6ff);
+  border: 0;
+  border-radius: 999px;
+  padding: 11px 16px;
+  cursor: pointer;
+}
+
+.engage:hover {
+  background: linear-gradient(180deg, #e4edff, #a8c6ff);
+}
+
+.engage:active {
+  transform: translateY(1px);
+}
+
+:focus-visible {
+  outline: 2px solid var(--focus);
+  outline-offset: 2px;
+}
+
+.heatmap {
+  margin: 14px 0 0;
+}
+
+.heatmap canvas {
+  display: block;
+  width: 180px;
+  height: 180px;
+  border-radius: 8px;
+  border: 1px solid var(--border);
+}
+
+.heatmap figcaption {
+  margin-top: 6px;
+}
+
+.status {
+  margin: 6px 0 10px;
+  font-size: 0.9rem;
+  line-height: 1.4;
+}
+
+.readout {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 4px 12px;
+  margin: 0 0 10px;
+  font-size: 0.88rem;
+}
+
+.readout:empty,
+.legs:empty {
+  display: none;
+}
+
+.readout dt {
+  color: var(--muted);
+}
+
+.readout dd {
+  margin: 0;
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+  overflow-wrap: anywhere;
+}
+
+.readout.live {
+  padding-bottom: 10px;
+  border-bottom: 1px solid var(--border);
+}
+
+.legs {
+  margin: 0 0 10px;
+  padding-left: 1.2em;
+  font-size: 0.8rem;
+  color: var(--muted);
+}
+
+.note {
+  margin: 0;
+}
+
+@media (max-width: 760px) {
+  html,
+  body {
+    height: auto;
+    overflow: visible;
+  }
+
+  .layout {
+    height: auto;
+    min-height: 100%;
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .cockpit,
+  .hud {
+    width: 100%;
+    max-height: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .engage:active {
+    transform: none;
+  }
+}
