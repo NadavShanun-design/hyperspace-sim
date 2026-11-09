@@ -132,3 +132,4 @@ hyg_id,name,distance_ly,ra_hours,dec_deg,spectral_type,constellation,apparent_ma
 72432,Xi Boo,21.8926,14.85649,19.10046,G8V + K4V,Boo,4.54
 82557,Gl 643,21.9014,16.92367,-8.32258,M4,Oph,11.73
 118530,Gl 299,22.0377,8.19930,8.77573,dM5,Cnc,12.83
+52866,Gl 402,22.0495,10.84780,6.80815,M4:,Leo,11.64
